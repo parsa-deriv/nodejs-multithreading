@@ -25,9 +25,15 @@ app.get("/", (req, res) => {
 
 app.get("/calculatefib/:num", (req, res) => {
   const num = req.params.num;
+  const startTime = Date.now();
   runThread(num)
     .then((result) => {
-      res.send(`Calculated Fib with the result of: ${result}`);
+      const endTime = Date.now();
+      res.send(
+        `Calculated Fib with the result of: ${result}, it took ${
+          (endTime - startTime) / 1000
+        } secs.`
+      );
     })
     .catch((err) => {
       console.log(err);

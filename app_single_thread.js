@@ -18,8 +18,14 @@ app.get("/", (req, res) => {
 
 app.get("/calculatefib/:num", (req, res) => {
   const num = req.params.num;
+  const startTime = Date.now();
   const result = calculateFib(num);
-  res.send(`Calculated Fib with the result of: ${result}`);
+  const endTime = Date.now();
+  res.send(
+    `Calculated Fib with the result of: ${result}, it took ${
+      (endTime - startTime) / 1000
+    } secs.`
+  );
 });
 
 app.listen(2000, () =>
